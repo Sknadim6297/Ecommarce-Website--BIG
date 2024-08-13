@@ -27,33 +27,38 @@ const SignUp = () => {
         })
     }
 
-    const handleSubmit =async (e) => {
-        e.preventDefault()
-        try {
-          
-        if(data.password == data.confirmPassword){
-
-          const dataResponse=await fetch(summaryApi.SignUP.url,{
-            method:summaryApi.SignUP.method,
-            headers:{
-              'Content-Type':'application/json'
-            },
-            body:JSON.stringify(data)
-          })
-          const dataApi= await dataResponse.json()
-          console.log('User',dataApi);
-          toast.success('User Registered Successfully')
-          navigate('/login')
-          } 
-          else{
-           toast.error('Password and Confirm Password should be same')
+    const handleSubmit = async (e) => {
+      e.preventDefault();
+      try {
+          if (data.password === data.confirmPassword) {
+              const dataResponse = await fetch(summaryApi.SignUP.url, {
+                  method: summaryApi.SignUP.method,
+                  headers: {
+                      'Content-Type': 'application/json',
+                      'Authorization': `Bearer ${yourAuthToken}`, // Replace with actual token
+                  },
+                  body: JSON.stringify(data),
+              });
+  
+              if (dataResponse.status === 401) {
+                  toast.error('Unauthorized access - please log in');
+                  navigate('/login'); // Redirect to login if unauthorized
+                  return;
+              }
+  
+              const dataApi = await dataResponse.json();
+              console.log('User', dataApi);
+              toast.success('User Registered Successfully');
+              navigate('/login');
+          } else {
+              toast.error('Password and Confirm Password should be the same');
           }
-        } catch (error) {
+      } catch (error) {
           console.log(error);
-          toast.error('Something went wrong')
-        }
-
-    }
+          toast.error('Something went wrong');
+      }
+  };
+  
 
     const handleUploadPic = async(e) =>{
       const file = e.target.files[0]

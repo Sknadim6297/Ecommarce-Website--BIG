@@ -24,7 +24,7 @@ const AdminEditProduct = ({
     price : productData?.price,
     sellingPrice : productData?.sellingPrice
   })
-  const [openFullScreenImage,setOpenFullScreenImage] = useState(false)
+  const [openFullScreenImage,setOpenFullScreenImage] = useState(true)
   const [fullScreenImage,setFullScreenImage] = useState("")
 
 
@@ -65,9 +65,6 @@ const AdminEditProduct = ({
     })
     
   }
-
-
-  {/**upload product */}
   const handleSubmit = async(e) =>{
     e.preventDefault()
     
@@ -162,7 +159,7 @@ const AdminEditProduct = ({
                          {
                            data.productImage.map((el,index)=>{
                              return(
-                               <div className='relative group' key={index}>
+                               <div className='relative group' >
                                    <img 
                                      src={el} 
                                      alt={el} 
@@ -239,11 +236,11 @@ const AdminEditProduct = ({
     </div>
 
 
-    {
+    {/* {
      openFullScreenImage && (
        <DisplayImage onClose={()=>setOpenFullScreenImage(false)} imgUrl={fullScreenImage}/>
      )
-    }
+    } */}
      
 
  </div>

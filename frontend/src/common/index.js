@@ -37,12 +37,44 @@ const summaryApi={
     updateProduct:{
         url:`${backendDomin}/api/update-product`,
         method:'POST'
-
+    },
+    deleteProduct:{
+        url:`${backendDomin}/api/product`,
+        method:'DELETE'
     },
     CategoryProduct:{
         url:`${backendDomin}/api/get-category-product`,
         method:'GET'
+    },
+    CategoryWiseProduct :{
+        url:`${backendDomin}/api/category-product`,
+        method:'POST'
+    },
+    ProductDetails:{
+        url:`${backendDomin}/api/product-details`,
+        method:'POST'
+    },
+     addToCart: {
+        url:`${backendDomin}/api/add-to-cart`,
+        method:'POST'
+    },
+    CartItemCount:{
+        url:`${backendDomin}/api/CartItemCount`,
+        method:'GET'
+    },
+    getCartProduct:{
+        url:`${backendDomin}/api/get-cart-product`,
+        method:'GET'
+    },
+    updateCartProduct:{
+        url:`${backendDomin}/api/update-cart-product`,
+        method:'POST'
+    },
+    deleteCartProduct:{
+        url:`${backendDomin}/api/delete-cart-product`,
+        method:'POST'
     }
+
 
 }
 

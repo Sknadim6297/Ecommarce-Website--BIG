@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react'
 import { CgClose } from "react-icons/cg";
 import productCategory from '../helpers/ProductCategory';
@@ -106,7 +105,7 @@ const UploadProduct = ({
                 </div>
             </div>
 
-          <form className='grid p-4 gap-2 overflow-y-scroll h-full pb-5' onSubmit={handleSubmit}>
+          <form className='grid p-4 gap-2 overflow-y-scroll h-full pb-5 ' onSubmit={handleSubmit}>
             <label htmlFor='productName'>Product Name :</label>
             <input 
               type='text' 
@@ -155,37 +154,39 @@ const UploadProduct = ({
               </div>
               </label> 
               <div>
-                  {
-                    data?.productImage[0] ? (
-                        <div className='flex items-center gap-2'>
-                            {
-                              data.productImage.map((el,index)=>{
-                                return(
-                                  <div className='relative group'>
-                                      <img 
-                                        src={el} 
-                                        alt={el} 
-                                        width={80} 
-                                        height={80}  
-                                        className='bg-slate-100 border cursor-pointer'  
-                                        onClick={()=>{
-                                          setOpenFullScreenImage(true)
-                                          setFullScreenImage(el)
-                                        }}/>
+              {
+  data?.productImage[0] ? (
+    <div className='flex items-center gap-2'>
+      {
+        data.productImage.map((el, index) => {
+          return (
+            <div className='relative group' key={index}>
+              <img 
+                src={el} 
+                alt={el} 
+                width={80} 
+                height={80}  
+                className='bg-slate-100 border cursor-pointer'  
+                onClick={()=>{
+                  setOpenFullScreenImage(true);
+                  setFullScreenImage(el);
+                }}/>
 
-                                        <div className='absolute bottom-0 right-0 p-1 text-white bg-red-600 rounded-full hidden group-hover:block cursor-pointer' onClick={()=>handleDeleteProductImage(index)}>
-                                          <MdDelete/>  
-                                        </div>
-                                  </div>
-                                  
-                                )
-                              })
-                            }
-                        </div>
-                    ) : (
-                      <p className='text-red-600 text-xs'>*Please upload product image</p>
-                    )
-                  }
+              <div 
+                className='absolute bottom-0 right-0 p-1 text-white bg-red-600 rounded-full hidden group-hover:block cursor-pointer' 
+                onClick={() => handleDeleteProductImage(index)}
+              >
+                <MdDelete/>  
+              </div>
+            </div>
+          );
+        })
+      }
+    </div>
+  ) : (
+    <p className='text-red-600 text-xs'>*Please upload product image</p>
+  )
+}
                   
               </div>
 
@@ -237,9 +238,6 @@ const UploadProduct = ({
       
        </div>
 
-
-
-       {/***display image full screen */}
        {
         openFullScreenImage && (
           <DisplayImage onclose={()=>setOpenFullScreenImage(false)} imgUrl={fullScreenImage}/>

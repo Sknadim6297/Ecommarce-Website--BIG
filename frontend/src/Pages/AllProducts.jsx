@@ -36,9 +36,10 @@ const AllProducts = () => {
         </button>
       </div>
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4 ">
+      <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-5 gap-4 ">
         {allProducts.map((product, index) => (
-          <AdminProductCard key={index + 'allProduct'} data={product} fetchData={fetchAllProducts} />
+          <AdminProductCard key={index + 'allProduct'} data={product}  fetchData={    fetchAllProducts
+} />
         ))}
       </div>
 

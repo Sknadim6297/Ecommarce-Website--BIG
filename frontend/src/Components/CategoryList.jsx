@@ -15,7 +15,6 @@ const CategoryList = () => {
         const dataResponse = await response.json()
         setLoading(false)
         setCategoryProduct(dataResponse.data)
-        console.log(dataResponse);
         
     }
 
@@ -44,7 +43,7 @@ const CategoryList = () => {
                                     <img src={product?.productImage[0]} alt={product?.category} className='h-full object-scale-down mix-blend-multiply hover:scale-125 transition-all'/>
                                 </div>
                                 <p className='text-center text-sm md:text-base capitalize'>{product?.category}</p>
-                            </Link>
+                            </Link> 
                         )
                     })
                 )

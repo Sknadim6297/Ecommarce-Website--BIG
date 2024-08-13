@@ -1,24 +1,36 @@
-const jwt = require("jsonwebtoken");
+const jwt = require('jsonwebtoken')
 
-const authToken = async (req, res, next) => {
-  try {
-    const token = req.cookies?.token;
-    console.log("token", token);
-    if (!token) {
-      return res.status(401).json({ message: "Unauthorized" });
+async function authToken(req,res,next){
+    try{
+        const token = req.cookies.token || req.headers.authorization?.split(" ")[1]
+        if(!token){
+            return res.status(200).json({
+                message : "Please Login...!",
+                error : true,
+                success : false
+            })
+        }
+
+        jwt.verify(token, process.env.SECRET_KEY, function(err, decoded) {
+            if(err){
+                console.log("error auth", err)
+            }
+
+            req.userId = decoded?._id
+
+            next()
+        });
+
+
+    }catch(err){
+        res.status(400).json({
+            message : err.message || err,
+            data : [],
+            error : true,
+            success : false
+        })
     }
-    const verifyToken = jwt.verify(token, process.env.SECRET_KEY);
+}
 
-    if (!verifyToken) {
-      return res.status(401).json({ message: "Unauthorized" });
-    }
-    
-    req.userId = verifyToken._id;
-    next();
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ message: "Something went wrong" });
-  }
-};
 
-module.exports = authToken;
+module.exports = authToken

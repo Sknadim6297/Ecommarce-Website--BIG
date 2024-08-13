@@ -1,17 +1,20 @@
 import './App.css';
 import { Outlet } from 'react-router-dom';
 import Header from './Components/Header';
-import Footer from './Components/Footer';
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SummaryApi from './common';
 import Context from './context';
 import { useDispatch } from 'react-redux';
 import { setUserDetails } from './store/UserSlice';
+import summaryApi from './common';
 
 function App() {
   const dispatch = useDispatch();
+
+  const [cartProductCount, setCartProductCount] = useState(0);
+
 
   const fetchUserDetails = async () => {
     try {
@@ -32,23 +35,44 @@ function App() {
     }
   };
 
+
+
+  const fetchUserAddToCart=async()=>{
+    try {
+      const dataResponse = await fetch(summaryApi.CartItemCount.url, {
+        method: summaryApi.CartItemCount.method,
+        credentials: 'include',
+      });
+
+      const dataApi = await dataResponse.json();
+      setCartProductCount(dataApi?.data?.count);
+      
+
+  }
+  catch (error) {
+    console.log(error)
+  }
+  }
+
+
   useEffect(() => {
     fetchUserDetails();
+    fetchUserAddToCart()
   }, []);
-
   return (
     <>
       <Context.Provider
         value={{
           fetchUserDetails,
+       cartProductCount,
+       fetchUserAddToCart
         }}
       >
         <ToastContainer position="top-center" />
         <Header />
-        <main className="min-h-[calc(100vh-120px)]">
+        <main className="min-h-[calc(100vh-120px)] pt-16">
           <Outlet />
         </main>
-        <Footer />
       </Context.Provider>
     </>
   );
