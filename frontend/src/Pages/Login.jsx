@@ -92,11 +92,11 @@ const Login = () => {
                                     <span>
                                         {
                                             showPassword ? (
-                                                <FaEyeSlash/>
+                                                <FaEye/>
                                             )
                                             :
                                             (
-                                                <FaEye/>
+                                                <FaEyeSlash/>
                                             )
                                         }
                                     </span>

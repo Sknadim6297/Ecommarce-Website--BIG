@@ -10,16 +10,14 @@ const bodyParser = require('body-parser');
 const PORT=4000 || process.env.PORT;
 
 dotenv.config();
-
 app.use(cors({
-    origin: 'http://localhost:5173',
-    credentials: true
-}));
+    origin: '*',
+  }));
 
 app.use(cookieParser());
 app.use(express.json());
 app.use(bodyParser.json({ limit: '10mb' }));
-app.use(bodyParser.urlencoded({ extended: true, limit: '10mb' }));
+app.use(bodyParser.urlencoded({ extended: true}));
 app.use(express.urlencoded({ extended: true }));
 app.use('/api', router);
 

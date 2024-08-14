@@ -75,7 +75,7 @@ const AdminProductCard = ({ data,fetchData }) => {
             </div>
 
             {editProduct && (
-                <AdminEditProduct productData={data} onClose={() => setEditProduct(false)} fetchdata={fetchdata} />
+                <AdminEditProduct productData={data} onClose={() => setEditProduct(false)} fetchData={fetchData} />
             )}
         </div>
     );

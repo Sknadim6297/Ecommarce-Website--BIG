@@ -3,7 +3,6 @@ import { CgClose } from "react-icons/cg";
 import productCategory from '../helpers/ProductCategory';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImage from '../helpers/UploadImage';
-import DisplayImage from './DisplayImage';
 import { MdDelete } from "react-icons/md";
 import SummaryApi from '../common';
 import {toast} from 'react-toastify'
@@ -237,12 +236,12 @@ const UploadProduct = ({
 
       
        </div>
-
+{/* 
        {
         openFullScreenImage && (
           <DisplayImage onclose={()=>setOpenFullScreenImage(false)} imgUrl={fullScreenImage}/>
         )
-       }
+       } */}
         
 
     </div>

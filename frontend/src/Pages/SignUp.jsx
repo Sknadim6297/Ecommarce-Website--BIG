@@ -131,8 +131,8 @@ const SignUp = () => {
                                      <span>
                                      {
                                             showPassword ? 
-                                            <FaEye onClick={() => setShowPassword(!showPassword)}/> :
-                                            <FaEyeSlash onClick={() => setShowPassword(!showPassword)}/>
+                                            <FaEyeSlash onClick={() => setShowPassword(!showPassword)}/> :
+                                            <FaEye onClick={() => setShowPassword(!showPassword)}/>
                                      }
 
                                      </span>

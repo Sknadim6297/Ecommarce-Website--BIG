@@ -1,5 +1,4 @@
 import React, { useContext, useState } from 'react'
-
 import { FaSearch } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
@@ -20,8 +19,6 @@ const Header = () => {
   const context=useContext(Context)
 
   const [menuDisplay,setMenuDisplay] = useState(false)
-
-  console.log(context);
   
 
   const handleLogout = async (e) => { 
