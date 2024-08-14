@@ -10,12 +10,23 @@ const bodyParser = require("body-parser");
 const PORT = 4000 || process.env.PORT;
 
 dotenv.config();
-app.use(
-  cors({
-    origin: "http://localhost:5173",
-    credentials: true,
-  })
-);
+app.use(cors({
+  origin: 'http://localhost:5173', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'], 
+  credentials: true 
+}));
+
+app.use((req, res, next) => {
+  res.header('Access-Control-Allow-Origin', 'http://localhost:5173');
+  res.header('Access-Control-Allow-Methods', 'GET, POST, PUT, DELETE');
+  res.header('Access-Control-Allow-Headers', 'Content-Type, Authorization');
+  res.header('Access-Control-Allow-Credentials', 'true'); 
+  next();
+});
+
+app.options('*', cors()); 
+
+
 
 app.use(cookieParser());
 app.use(express.json());

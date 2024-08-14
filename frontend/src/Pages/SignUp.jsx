@@ -31,12 +31,13 @@ const SignUp = () => {
       e.preventDefault();
       try {
           if (data.password === data.confirmPassword) {
-              const dataResponse = await fetch("https://ecommarce-website-using-mern-nadeem-ulid.onrender.com/api/signup", {
+              const dataResponse = await fetch("https://ecommarce-website-using-mern-nadeem-w5ev.onrender.com/api/signup", {
                   method: summaryApi.SignUP.method,
                   headers: {
                       'Content-Type': 'application/json',
                   },
                   body: JSON.stringify(data),
+                  credentials: 'include'
               });
   
               if (dataResponse.status === 401) {
