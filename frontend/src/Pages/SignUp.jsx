@@ -31,11 +31,10 @@ const SignUp = () => {
       e.preventDefault();
       try {
           if (data.password === data.confirmPassword) {
-              const dataResponse = await fetch(summaryApi.SignUP.url, {
+              const dataResponse = await fetch("https://ecommarce-website-using-mern-nadeem-ulid.onrender.com/api/signup", {
                   method: summaryApi.SignUP.method,
                   headers: {
                       'Content-Type': 'application/json',
-                      'Authorization': `Bearer ${yourAuthToken}`, // Replace with actual token
                   },
                   body: JSON.stringify(data),
               });

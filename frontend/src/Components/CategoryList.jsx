@@ -13,6 +13,8 @@ const CategoryList = () => {
         setLoading(true)
         const response = await fetch(summaryApi.CategoryProduct.url)
         const dataResponse = await response.json()
+        console.log(dataResponse);
+        
         setLoading(false)
         setCategoryProduct(dataResponse.data)
         

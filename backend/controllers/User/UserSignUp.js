@@ -7,6 +7,7 @@ const UserSignUp = async (req, res) => {
         if (!email || !password || !name) {
             return res.status(400).json({ message: 'Please enter all fields' });
         }
+        
 
         const user = await userModel.findOne({ email });
         if (user) {
@@ -28,7 +29,7 @@ const UserSignUp = async (req, res) => {
         res.status(200).json({ message: 'User registered successfully', user: newUser });
 
     } catch (error) {
-        console.error(error);
+        console.error("Detailed error message:", error);
         res.status(500).json({ message: 'Something went wrong' });
     }
 }

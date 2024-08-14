@@ -27,7 +27,7 @@ app.use("/api", router);
 connectDB();
 
 app.get("/", (req, res) => {
-  res.json({ message: "Hello from server!" });
+  res.json({ message: "Fuck!" });
 });
 
 app.listen(PORT, () => {

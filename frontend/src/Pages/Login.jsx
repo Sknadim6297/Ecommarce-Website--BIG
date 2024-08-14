@@ -32,7 +32,7 @@ const Login = () => {
     const handleSubmit = async(e) =>{
         e.preventDefault()
 
-        const dataResponse = await fetch(SummaryApi.SignIN.url,{
+        const dataResponse = await fetch("https://ecommarce-website-using-mern-nadeem-ulid.onrender.com/api/login",{
             method : SummaryApi.SignIN.method,
             credentials : 'include',
             headers : {
