@@ -1,5 +1,5 @@
 
-const backendDomin = "https://ecommarce-website-using-mern-nadeem-tufx.onrender.com"
+const backendDomin = "http://localhost:4000"
 
 const summaryApi={
     SignUP:{
