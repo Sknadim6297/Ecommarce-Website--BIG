@@ -1,5 +1,5 @@
 
-const backendDomin = "https://ecommarce-website-using-mern-nadeem-ulid.onrender.com"
+const backendDomin = "http://localhost:4000"
 
 const summaryApi={
     SignUP:{
@@ -73,6 +73,9 @@ const summaryApi={
     deleteCartProduct:{
         url:`${backendDomin}/api/delete-cart-product`,
         method:'POST'
+    },
+    filterProduct:{
+        url:`${backendDomin}/api/filter-product`
     }
 
 

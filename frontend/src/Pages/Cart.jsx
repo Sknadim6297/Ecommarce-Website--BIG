@@ -94,7 +94,7 @@ const Cart = () => {
 
     if (responseData.success) {
       fetchData();
-      context.fetchUserAddToCart();
+      fetchUserAddToCart();
     }
   };
 

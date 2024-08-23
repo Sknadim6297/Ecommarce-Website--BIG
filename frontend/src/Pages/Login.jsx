@@ -6,6 +6,7 @@ import { Link, useNavigate } from 'react-router-dom';
 import SummaryApi from '../common';
 import { toast } from 'react-toastify';
 import Context from '../context';
+import summaryApi from '../common';
 
 const Login = () => {
     const [showPassword,setShowPassword] = useState(false)
@@ -32,7 +33,7 @@ const Login = () => {
     const handleSubmit = async(e) =>{
         e.preventDefault()
 
-        const dataResponse = await fetch("https://ecommarce-website-using-mern-nadeem-w5ev.onrender.com/api/login",{
+        const dataResponse = await fetch(summaryApi.SignIN.url,{
             method : SummaryApi.SignIN.method,
             credentials : 'include',
             headers : {
@@ -111,7 +112,7 @@ const Login = () => {
 
                     </form>
 
-                    <p className='my-5'>Don't have account ? <Link to={"/signup"} className=' text-red-600 hover:text-red-700 hover:underline'>Sign up</Link></p>
+                    <p className='my-5 text-center'>Don't have account ? <Link to={"/signup"} className=' text-red-600 hover:text-red-700 hover:underline'>Sign up</Link></p>
             </div>
 
 

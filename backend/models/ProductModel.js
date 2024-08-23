@@ -8,10 +8,11 @@ const productSchema = new mongoose.Schema({
     productImage: [],
     description: String,
     sellingPrice: Number,
-},
-{
-    timestamps:true
+}, {
+    timestamps: true
 });
 
-const ProductModel= mongoose.model('Product', productSchema);
+// Check if the model already exists before defining it
+const ProductModel = mongoose.models.Product || mongoose.model('Product', productSchema);
+
 module.exports = ProductModel;

@@ -31,7 +31,7 @@ const SignUp = () => {
       e.preventDefault();
       try {
           if (data.password === data.confirmPassword) {
-              const dataResponse = await fetch("https://ecommarce-website-using-mern-nadeem-w5ev.onrender.com/api/signup", {
+              const dataResponse = await fetch(summaryApi.SignUP.url, {
                   method: summaryApi.SignUP.method,
                   headers: {
                       'Content-Type': 'application/json',
