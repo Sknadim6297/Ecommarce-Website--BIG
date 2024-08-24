@@ -1,5 +1,5 @@
 
-const backendDomin = "https://nadeem-estore-com.onrender.com"
+const backendDomin = import.meta.env.VITE_BACKEND_URL;
 
 const summaryApi={
     SignUP:{
