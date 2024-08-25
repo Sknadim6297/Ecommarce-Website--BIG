@@ -2,7 +2,7 @@ import React, { useContext, useState } from 'react'
 import { FaSearch } from "react-icons/fa";
 import { FaUserCircle } from "react-icons/fa";
 import { FaShoppingCart } from "react-icons/fa";
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import summaryApi from '../common';
 import { setUserDetails } from '../store/UserSlice';
@@ -19,6 +19,11 @@ const Header = () => {
   const context=useContext(Context)
 
   const [menuDisplay,setMenuDisplay] = useState(false)
+  const searchInput = useLocation()
+
+  const URLSearch = new URLSearchParams(searchInput?.search)
+  const searchQuery = URLSearch.getAll("q")
+  const [search,setSearch] = useState(searchQuery)
   
 
   const handleLogout = async (e) => { 
@@ -42,6 +47,18 @@ const Header = () => {
         
   }
 
+
+  const handleSearch = (e) => {
+    const {value} = e.target
+    setSearch(value)
+
+    if(value){
+      navigate(`/search?q=${value}`)
+    }else{
+      navigate("/search")
+    }
+  }
+
   
   return (
     <header className='h-16 shadow-md fixed w-full z-40 bg-slate-200' >
@@ -52,7 +69,7 @@ const Header = () => {
             </Link>
             </div>
             <div className='hidden lg:flex items-center w-full justify-between max-w-sm border rounded-full focus-within:shadow-md pl-3 border-black'>
-            <input className='outline-none w-full  bg-slate-200 ' type="text" placeholder='Search Product here' />
+            <input className='outline-none w-full  bg-slate-200 ' type="text" placeholder='Search Product here' onChange={handleSearch} />
             <div className='text-lg min-w-[50px] h-8 bg-black flex items-center justify-center rounded-r-full text-white'>
             <FaSearch />
             </div>

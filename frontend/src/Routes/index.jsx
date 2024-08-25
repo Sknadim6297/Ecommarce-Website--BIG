@@ -10,6 +10,7 @@ import CategoryProduct from "../Pages/CategoryProduct.jsx";
 import ProdcutDetails from "../Pages/ProdcutDetails.jsx";
 import ProtectedRoute from "../Components/ProtectedRoute.jsx";
 import Cart from "../Pages/Cart.jsx";
+import SearchProduct from "../Pages/SearchProduct.jsx";
 
 const router = createBrowserRouter([
   {
@@ -35,6 +36,11 @@ const router = createBrowserRouter([
       {
         path:"cart",
         element:<Cart/>
+
+      },
+      {
+        path: "search",
+        element: <SearchProduct />
 
       },
       {

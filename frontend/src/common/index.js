@@ -1,4 +1,3 @@
-
 const backendDomin = import.meta.env.VITE_BACKEND_URL;
 
 const summaryApi={
@@ -41,6 +40,10 @@ const summaryApi={
     deleteProduct:{
         url:`${backendDomin}/api/product`,
         method:'DELETE'
+    },
+    searchProduct : {
+        url : `${backendDomin}/api/search`,
+        method : 'get'
     },
     CategoryProduct:{
         url:`${backendDomin}/api/get-category-product`,
