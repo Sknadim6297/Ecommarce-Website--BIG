@@ -3,6 +3,7 @@ import { CgClose } from "react-icons/cg";
 import productCategory from '../helpers/ProductCategory';
 import { FaCloudUploadAlt } from "react-icons/fa";
 import uploadImage from '../helpers/UploadImage';
+
 import { MdDelete } from "react-icons/md";
 import SummaryApi from '../common';
 import {toast} from 'react-toastify'
@@ -10,7 +11,7 @@ import {toast} from 'react-toastify'
 const AdminEditProduct = ({
     onClose,
     productData,
-    fetchData 
+    fetchdata
   }) => {
 
   const [data,setData] = useState({
@@ -23,7 +24,7 @@ const AdminEditProduct = ({
     price : productData?.price,
     sellingPrice : productData?.sellingPrice
   })
-  const [openFullScreenImage,setOpenFullScreenImage] = useState(true)
+  const [openFullScreenImage,setOpenFullScreenImage] = useState(false)
   const [fullScreenImage,setFullScreenImage] = useState("")
 
 
@@ -64,6 +65,9 @@ const AdminEditProduct = ({
     })
     
   }
+
+
+  {/**upload product */}
   const handleSubmit = async(e) =>{
     e.preventDefault()
     
@@ -80,8 +84,8 @@ const AdminEditProduct = ({
 
     if(responseData.success){
         toast.success(responseData?.message)
-        fetchData()
         onClose()
+        fetchdata()
     }
 
 
@@ -158,7 +162,7 @@ const AdminEditProduct = ({
                          {
                            data.productImage.map((el,index)=>{
                              return(
-                               <div className='relative group' key={index} >
+                               <div className='relative group'>
                                    <img 
                                      src={el} 
                                      alt={el} 
@@ -166,6 +170,8 @@ const AdminEditProduct = ({
                                      height={80}  
                                      className='bg-slate-100 border cursor-pointer'  
                                      onClick={()=>{
+                                       setOpenFullScreenImage(true)
+                                       setFullScreenImage(el)
                                      }}/>
 
                                      <div className='absolute bottom-0 right-0 p-1 text-white bg-red-600 rounded-full hidden group-hover:block cursor-pointer' onClick={()=>handleDeleteProductImage(index)}>
@@ -226,8 +232,22 @@ const AdminEditProduct = ({
 
            <button className='px-3 py-2 bg-red-600 text-white mb-10 hover:bg-red-700'>Update Product</button>
        </form> 
+
+
+
    
     </div>
+
+
+
+    {/* **display image full screen
+    {
+     openFullScreenImage && (
+       <DisplayImage onClose={()=>setOpenFullScreenImage(false)} imgUrl={fullScreenImage}/>
+     )
+    } */}
+     
+
  </div>
   )
 }
