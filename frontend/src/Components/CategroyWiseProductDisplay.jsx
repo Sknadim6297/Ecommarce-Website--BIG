@@ -47,7 +47,7 @@ const CategroyWiseProductDisplay = ({category, heading}) => {
             <h2 className='text-2xl font-semibold py-4'>{heading}</h2>
 
                 
-           <div className='flex items-center gap-20 md:gap-15 overflow-scroll scrollbar-none transition-all' ref={scrollElement}>
+           <div className='flex items-center gap-10 md:gap-20 overflow-scroll scrollbar-none transition-all' ref={scrollElement}>
 
             <button  className='bg-white shadow-md rounded-full p-1 absolute left-0 text-lg hidden md:block' onClick={scrollLeft}><FaAngleLeft/></button>
             <button  className='bg-white shadow-md rounded-full p-1 absolute right-0 text-lg hidden md:block' onClick={scrollRight}><FaAngleRight/></button> 
@@ -74,7 +74,7 @@ const CategroyWiseProductDisplay = ({category, heading}) => {
            ) : (
             data.map((product,index)=>{
                 return(
-                    <Link to={"product/"+product?._id} className='w-full min-w-[280px] md:min-w-[320px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex' key={index}>
+                    <Link to={"product/"+product?._id} className='w-full min-w-[330px] md:min-w-[360px] max-w-[280px] md:max-w-[320px] h-36 bg-white rounded-sm shadow flex' key={index}>
                         <div className='bg-slate-200 h-full p-4 min-w-[120px] md:min-w-[145px]'>
                             <img src={product.productImage[0]} className='object-scale-down h-full hover:scale-110 transition-all'/>
                         </div>
