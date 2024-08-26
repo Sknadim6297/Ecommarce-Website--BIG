@@ -78,10 +78,9 @@ const summaryApi={
         method:'POST'
     },
     filterProduct:{
-        url:`${backendDomin}/api/filter-product`
+        url:`${backendDomin}/api/filter-product`,
+        method:'POST'
     }
-
-
 }
 
 

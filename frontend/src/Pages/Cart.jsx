@@ -117,7 +117,7 @@ const Cart = () => {
       <div className="text-center text-lg my-3">
         {data.length === 0 && !loading && <p className="bg-white py-5">No Data</p>}
       </div>
-      <div className="font-bold text-3xl text-center ">Cart</div>
+      <div className="font-bold text-3xl text-center">Cart</div>
 
       <div className="flex flex-col lg:flex-row gap-10 lg:justify-between p-4">
         <div className="w-full max-w-3xl">

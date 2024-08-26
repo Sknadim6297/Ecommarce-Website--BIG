@@ -1,28 +1,29 @@
-const productModel = require("../../models/ProductModel");
+const productModel = require("../../models/productModel")
 
-const filterProductController = async (req, res) => {
-  try {
-    const categoryList = req.query.category ? req.query.category.split(',') : [];
+const filterProductController = async(req,res)=>{
+ try{
+        const categoryList = req?.body?.category || []
 
-    const products = await productModel.find({
-      category: {
-        "$in": categoryList
-      }
-    });
+        const product = await productModel.find({
+            category :  {
+                "$in" : categoryList
+            }
+        })
 
+        res.json({
+            data : product,
+            message : "product",
+            error : false,
+            success : true
+        })
+ }catch(err){
     res.json({
-      data: products,
-      message: "Products fetched successfully",
-      error: false,
-      success: true
-    });
-  } catch (err) {
-    res.status(500).json({
-      message: err.message || err,
-      error: true,
-      success: false
-    });
-  }
-};
+        message : err.message || err,
+        error : true,
+        success : false
+    })
+ }
+}
 
-module.exports = filterProductController;
+
+module.exports = filterProductController
