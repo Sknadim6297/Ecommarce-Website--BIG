@@ -11,6 +11,9 @@ import ProdcutDetails from "../Pages/ProdcutDetails.jsx";
 import ProtectedRoute from "../Components/ProtectedRoute.jsx";
 import Cart from "../Pages/Cart.jsx";
 import SearchProduct from "../Pages/SearchProduct.jsx";
+import Success from "../Pages/Success.jsx";
+import Cancel from "../Pages/CencelPage.jsx";
+import OrderPage from "../Pages/OrderPage.jsx";
 
 const router = createBrowserRouter([
   {
@@ -39,9 +42,22 @@ const router = createBrowserRouter([
 
       },
       {
+     path:"success",
+      element:<Success/>
+        },
+      {
+        path : "cancel",
+        element:<Cancel/>
+      },
+      {
         path: "search",
         element: <SearchProduct />
 
+      },
+      {
+
+        path:"orders",
+        element:<OrderPage/>
       },
       {
         path: "product/:id",

@@ -80,7 +80,12 @@ const summaryApi={
     filterProduct:{
         url:`${backendDomin}/api/filter-product`,
         method:'POST'
+    },
+    Payment:{
+        url:`${backendDomin}/api/checkout`,
+        method:'POST'
     }
+
 }
 
 

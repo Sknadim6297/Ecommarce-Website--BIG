@@ -3,6 +3,8 @@ import Context from "../context";
 import displayINRCurrency from "../helpers/DisplayCurrency";
 import { MdDelete } from "react-icons/md";
 import summaryApi from "../common";
+import { loadStripe } from "@stripe/stripe-js";
+
 
 const Cart = () => {
   const [data, setData] = useState([]);
@@ -112,12 +114,54 @@ const Cart = () => {
     0
   );
 
+  const handlePayment = async () => {
+    try {
+      const stripe = await loadStripe(import.meta.env.VITE_STRIPE_PUBLIC_KEY);
+  
+      const response = await fetch(summaryApi.Payment.url, {
+        method: summaryApi.Payment.method,
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          cartItems: data,
+        }),
+      });
+  
+      if (!response.ok) {
+        // If response is not okay, throw an error with status
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+  
+      const responseData = await response.json();
+  
+      if (responseData.id) {
+        // Redirect to Stripe Checkout
+        const { error } = await stripe.redirectToCheckout({
+          sessionId: responseData.id,
+        });
+  
+        if (error) {
+          console.error("Error during Stripe checkout redirect:", error);
+        }
+      } else {
+        console.error("Failed to initiate payment:", responseData.message || "No session ID returned");
+      }
+  
+    } catch (error) {
+      console.error("Error occurred during payment:", error.message);
+    }
+  };
+
+
   return (
     <div className="container mx-auto">
       <div className="text-center text-lg my-3">
+      <div className="font-bold text-3xl text-center">Cart</div>
+
         {data.length === 0 && !loading && <p className="bg-white py-5">No Data</p>}
       </div>
-      <div className="font-bold text-3xl text-center">Cart</div>
 
       <div className="flex flex-col lg:flex-row gap-10 lg:justify-between p-4">
         <div className="w-full max-w-3xl">
@@ -201,8 +245,7 @@ const Cart = () => {
                 <p>Total Price</p>
                 <p>{displayINRCurrency(totalPrice)}</p>
               </div>
-
-              <button className="bg-blue-600 p-2 text-white w-full mt-2">
+              <button className="bg-blue-600 p-2 text-white w-full mt-2" onClick={handlePayment}>
                 Payment
               </button>
             </div>
