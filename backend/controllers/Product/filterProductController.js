@@ -1,4 +1,4 @@
-const productModel = require("../../models/productModel")
+const productModel = require("../../models/ProductModel")
 
 const filterProductController = async(req,res)=>{
  try{
